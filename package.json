@@ -16,7 +16,7 @@
     "test": "jest ",
     "test:watch": "jest --watch"
   },
-  "author": "sniu23 <5988964@qq.com>",
+  "author": "shuo.niu@qq.com",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^5.0.0",
