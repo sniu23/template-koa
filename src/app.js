@@ -27,7 +27,7 @@ app.context.succ = function (data) {
   }
 }
 
-app.use(jwt({ secret: config.secret }).unless({ path: [/\/register/, /\/login/] }))
+// app.use(jwt({ secret: config.secret }).unless({ path: [/\/register/, /\/login/] }))
 
 const routes = require('./routes')
 app.use(routes.routes())
