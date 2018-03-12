@@ -1,7 +1,7 @@
 const Router = require('koa-router')
 const router = new Router()
 
-const ctrl = require('../controllers/home')
+const ctrl = require('../controller/home')
 
 router.get('/home/index', ctrl.index)
 router.get('/home/knex', ctrl.knex)

@@ -4,15 +4,12 @@
   "description": "api template use koa knex ...",
   "main": "app.js",
   "scripts": {
-    "dev": "DEBUG=* pm2 start src/app.js --name 'api' --watch",
-    "mon": "DEBUG=* nodemon src/app.js",
+    "dev": "DEBUG=* nodemon src/app.js",
     "start": "pm2 start src/app.js -i 0 --name 'api'",
     "stop": "pm2 stop api",
     "reload": "pm2 gracefulReload api",
     "lint": "standard | snazzy",
-    "lint:fix": "standard --fix | snazzy",
-    "test": "jest ",
-    "test:watch": "jest --watch"
+    "lint:fix": "standard --fix | snazzy"
   },
   "author": "sniu23 <5988964@qq.com>",
   "license": "MIT",
@@ -31,7 +28,6 @@
   },
   "devDependencies": {
     "debug": "^3.1.0",
-    "jest": "^22.4.0",
     "nodemon": "^1.15.1",
     "snazzy": "^7.0.0",
     "standard": "^11.0.0"

@@ -18,7 +18,8 @@ app.use(helmet())
 app.use(cors(config.cors))
 app.use(bodyParser())
 
-app.context.db = require('knex')(config.knex)
+// const knex = require('./lib/knex')
+// app.context.db = knex
 
 app.context.succ = function (data) {
   return {
@@ -29,7 +30,7 @@ app.context.succ = function (data) {
 
 // app.use(jwt({ secret: config.secret }).unless({ path: [/\/register/, /\/login/] }))
 
-const routes = require('./routes')
+const routes = require('./router')
 app.use(routes.routes())
 app.use(routes.allowedMethods())
 

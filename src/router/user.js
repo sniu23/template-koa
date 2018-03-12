@@ -1,7 +1,7 @@
 const Router = require('koa-router')
 const router = new Router()
 
-const ctrl = require('../controllers/user')
+const ctrl = require('../controller/user')
 
 router.get('/login', ctrl.login)
 

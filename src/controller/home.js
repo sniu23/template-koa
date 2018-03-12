@@ -1,7 +1,8 @@
 
-const home = require('../services/home')
+const home = require('../service/home')
 
 module.exports = {
+
   async index (ctx) {
     ctx.body = 'Hello!'
   },
