@@ -1,13 +1,15 @@
 
 const knex = require('../lib/knex')
 
-module.exports = {
-  find: async function () {
-    const data = await knex.select().from('DUAL')
-    return data
-  },
-  find1: async function () {
-    const data = await this.find()
-    return data
-  }
+exports.find = find
+exports.find1 = find1
+
+async function find (rds = knex) {
+  const data = await rds.select().from('DUAL')
+  return data
+}
+
+async function find1 (rds = knex) {
+  const data = await find(rds)
+  return data
 }

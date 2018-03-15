@@ -1,85 +1,35 @@
 
-```js
-const Koa = require('koa')
-const app = new Koa()
+# [KOA](https://github.com/demopark/koa-docs-Zh-CN)
 
-// x-response-time
-app.use(async (ctx, next) => {
-  const start = Date.now()
-  await next()
-  const ms = Date.now() - start
-  ctx.set('X-Response-Time', `${ms}ms`)
-})
+## 机制
 
-// console
-app.use(async (ctx, next) => {
-  const start = Date.now()
-  await next()
-  const ms = Date.now() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
+- app
+  - context
+    - request
+    - response
 
-// response
-app.use(ctx => {
-  ctx.body = 'Hello Koa'
-})
+![middleware](koa.middleware.gif)
 
-app.listen(3000)
-```
+## GET / POST
 
 ```js
-const Koa = require('koa')
-const app = new Koa()
+// 1. router.params
+router.get('/:category/:title', (ctx, next) => {
+  console.log(ctx.params);
+  // => { category: 'programming', title: 'how-to-node' }
+});
 
-const compose = require('koa-compose')
+// 2. request.query
+ctx.query = { color: 'blue', size: 'small' }
+// => color=blue&size=small
 
-async function random(ctx, next) {
-  if ('/random' == ctx.path) {
-    ctx.body = Math.floor(Math.random() * 10)
-  } else {
-    await next()
-  }
-}
-
-async function backwards(ctx, next) {
-  if ('/backwards' == ctx.path) {
-    ctx.body = 'sdrawkcab'
-  } else {
-    await next()
-  }
-}
-
-async function pi(ctx, next) {
-  if ('/pi' == ctx.path) {
-    ctx.body = String(Math.PI)
-  } else {
-    await next()
-  }
-}
-
-const all = compose([random, backwards, pi])
-
-app.use(all)
-
-app.listen(3000)
-```
-
-```js
-const Koa = require('koa')
-const app = new Koa()
-
-// async
-const fs = require('fs-promise')
-app.use(async function (ctx, next) {
-  const paths = await fs.readdir('docs')
-  const files = await Promise.all(paths.map(path => fs.readFile(`docs/${path}`, 'utf8')))
-
-  ctx.type = 'markdown'
-  ctx.body = files.join('')
+// 3. post's form (request.body)
+router.post('/c', async(ctx, next) => {
+    console.log(ctx.request.body);
 })
-
-app.listen(3000)
 ```
+
+## 响应状态
 
 - 100 “continue”
 - 101 “switching protocols”

@@ -1,6 +1,6 @@
 
 const debug = require('debug')('error')
-const NODE_ENV = process.env.NODE_ENV // || 'production'
+const NODE_ENV = process.env.NODE_ENV || 'development'
 
 module.exports = async (ctx, next) => {
   try {

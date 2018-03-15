@@ -1,5 +1,5 @@
 
-const home = require('../service/home')
+const { find1 } = require('../service/home')
 
 module.exports = {
 
@@ -22,7 +22,7 @@ module.exports = {
   },
 
   async find (ctx) {
-    const data = await home.find1(ctx.db)
+    const data = await find1()
     ctx.body = ctx.succ(data)
   }
 
