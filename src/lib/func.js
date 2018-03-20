@@ -1,14 +1,14 @@
 
-exports.arrUnique = arrUnique
-exports.getIPadress = getIPadress
+exports.arrayUnique = arrayUnique
+exports.getIP = getIP
 
 // 剔除数组中的重复项
-function arrUnique (array) {
+function arrayUnique (array) {
   return Array.from(new Set(array))
 }
 
 // 获取 IP 地址
-function getIPadress () {
+function getIP () {
   var interfaces = require('os').networkInterfaces()
   for (var devName in interfaces) {
     var iface = interfaces[devName]

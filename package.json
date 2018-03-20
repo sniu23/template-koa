@@ -25,6 +25,7 @@
     "koa-response-time": "^2.0.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.5",
+    "md5": "^2.2.1",
     "mysql": "^2.15.0",
     "oracledb": "^2.1.2"
   },
