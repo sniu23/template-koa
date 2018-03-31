@@ -27,6 +27,8 @@ ctx.query = { color: 'blue', size: 'small' }
 router.post('/c', async(ctx, next) => {
     console.log(ctx.request.body);
 })
+
+// 4. ctx.head
 ```
 
 ## 响应状态

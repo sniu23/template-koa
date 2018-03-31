@@ -7,12 +7,6 @@ module.exports = {
     ctx.body = 'Hello!'
   },
 
-  async knex (ctx) {
-    const db = ctx.db
-    const data = await db('DUAL').select()
-    ctx.body = data
-  },
-
   async fail (ctx) {
     ctx.throw(400, 'its wrong!')
   },
@@ -21,9 +15,14 @@ module.exports = {
     ctx.body = ctx.succ('im fine.')
   },
 
-  async find (ctx) {
+  async knex (ctx) {
     const data = await find1()
     ctx.body = ctx.succ(data)
+  },
+
+  async user (ctx) {
+    const user = ctx.state.user || ''
+    ctx.body = ctx.succ(user)
   }
 
 }

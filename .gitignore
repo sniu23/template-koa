@@ -17,3 +17,5 @@ Thumbs.db
 # tmp
 data
 .env
+/config/mysql.js
+/config/oracle.js
