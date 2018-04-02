@@ -4,12 +4,15 @@ const knex = require('../../lib/knex')
 module.exports = {
 
   async find (ctx) {
-    const rows = await knex('Role').select()
-    ctx.body = ctx.succ(rows)
+    const _ = ctx.query
+    const rows = await knex.select(_.sel || '*').from('Role').where(_.whe || null).limit(_.lim || 10).offset(_.off || 0)
+    const count = await knex.count(_.sel || '*').from('Role').where(_.whe || null)
+    ctx.body = ctx.succ({rows, count})
   },
 
   async findOne (ctx) {
-    const rows = await knex('Role').select()
+    const idx = ctx.params
+    const rows = await knex.first(_.sel || '*').from('Role').where(idx)
     ctx.body = ctx.succ(rows[0])
   },
 
