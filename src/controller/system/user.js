@@ -38,33 +38,36 @@ module.exports = {
 
   async find (ctx) {
     const _ = ctx.query
-    const rows = await knex.select(_.sel || '*').from('User').where(_.whe || null).limit(_.lim || 10).offset(_.off || 0)
-    const count = await knex.count(_.sel || '*').from('User').where(_.whe || null)
-    ctx.body = ctx.succ({rows, count})
+    const rows = await knex.select().from('user').where(JSON.parse(_.whe)).limit(parseInt(_.lim) || 10).offset(parseInt(_.off) || 0)
+    const count = await knex.count('* as cnt').from('user').where(JSON.parse(_.whe))
+    ctx.body = ctx.succ({rows, count: count[0].cnt})
   },
 
   async findOne (ctx) {
     const idx = ctx.params
-    const rows = await knex.first(_.sel || '*').from('User').where(idx)
+    const rows = await knex.first().from('user').where(idx)
     ctx.body = ctx.succ(rows[0])
   },
 
   async insert (ctx) {
-    const row = ctx.request.body
-    const result = await knex.insert(row).into('User')
+    let row = ctx.request.body
+    row = Object.assign(row, { createdAt: knex.raw('now()'), updatedAt: knex.raw('now()') })
+    const result = await knex.insert(row).into('user')
     ctx.body = ctx.succ(result)
   },
 
   async update (ctx) {
     const idx = ctx.params
-    const row = ctx.request.body
-    const result = await knex('User').where(idx).update(row)
+    let row = ctx.request.body
+    row = Object.assign(row, { updatedAt: knex.raw('now()') })
+    console.log(knex('user').where(idx).update(row).toString())
+    const result = await knex('user').where(idx).update(row)
     ctx.body = ctx.succ(result)
   },
 
   async delete (ctx) {
     const idx = ctx.params
-    const result = await knex('User').where(idx).delete()
+    const result = await knex('user').where(idx).delete()
     ctx.body = ctx.succ(result)
   }
 
